@@ -29,12 +29,13 @@ float calculator(string expression, int p1, int p2){
                 break;
             }
         }
-        temp_expression = temp_expression.substr(p1, p2 - p1);
+        temp_expression = temp_expression.substr(p1, p2 - p1 + 1);
         calculator(temp_expression, p1, p2);
     }
     else{ //здесь обрабатываем выражения без скобок
         //(уже сделано)нужно добавить проверку на отрицательные числа в начале строки
         // if ((i != 0) && (i == "-"));
+        int g1, g2; //выделение подстрок для работы с операторами
         for (int f = 0; f < ops.length(); ++f){
             if (temp_expression.find(ops[f]) != -1){ // здесь ищем числа, окружающие нужный нам оператор
                     for (int i = 0; i <= temp_expression.length(); ++ i)
@@ -50,6 +51,7 @@ float calculator(string expression, int p1, int p2){
                             if (i == ops[f]){
                                 flag = 1;
                                 a = stof(n);
+                                g1 = i;
                                 }
                             }
                             if (flag == 1){
@@ -58,7 +60,8 @@ float calculator(string expression, int p1, int p2){
                                 }
                                 if (ops.find(temp_expression[i]) != -1){
                                     b = stof(m);
-                                    break;
+                                    flag = 2;
+                                    g2 = i;
                                 }
                                 }
                         }
@@ -79,7 +82,7 @@ float calculator(string expression, int p1, int p2){
 //                            a = 0;
 //                            b = 0;
 //                            c = 0;
-                            expression.replace(p1 , p2 - p1, d);
+                            expression.replace(g1, g2 - g1 + 1, d);
                             cout << expression;
                             temp_expression = expression;
                     }
