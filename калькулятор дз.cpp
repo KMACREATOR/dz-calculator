@@ -7,15 +7,16 @@ string expression;
 string numbers("0123456789"); //набор цифр для проверки
 string ops("^*/+-");
 string d;
+float a, b, c; // переменные для записи членов арифмитических выражений и их результатов
 int p1, p2; //первый и второй индекс вхождения подвыражения в выражения
 
 float calculator(string expression, int p1, int p2){
     string temp_expression = expression;
     string n(""), m(""); //строки для записи членов
-    float a, b, c; // переменные для записи членов арифмитических выражений и их результатов
 
     int t; // переменная приоритета операторов
-    int k1 = 0, k2 = 0; //счетчики для открытых и закрытых скобок
+    int k1 = 0;
+    int k2 = 0; //счетчики для открытых и закрытых скобок
     if (temp_expression.find("(") != 0){ //в этом куске проверяем выражение на скобки
         for (int i = 0; i <= temp_expression.length(); ++i){
             if (temp_expression[i] == '('){
@@ -67,45 +68,22 @@ float calculator(string expression, int p1, int p2){
 
                             switch(ops[f]){
                             case '^':
-                                {
                                 c = pow(a, b);
-                                string d = to_string(c);
-                                break;
-                                }
-
                             case '*':
-                                {
                                 c = a * b;
-                                string d = to_string(c);
-                                break;
-                                }
-
                             case '/':
-                                {
                                 c = a / b;
-                                string d = to_string(c);
-                                break;
-                                }
-
                             case '+':
-                                {
                                 c = a + b;
-                                string d = to_string(c);
-                                break;
-                                }
-
                             case '-':
-                                {
-                                c = a + b;
-                                string d = to_string(c);
-                                break;
-                                }
-                            }
+                                 c = a - b;
+                            string d = to_string(c);
                             a = 0;
                             b = 0;
                             c = 0;
-                            temp_expression.replace(p1, p2 - p1, d);
-                            cout << temp_expression;
+                            expression.replace(p1, p2 - p1, d);
+                            cout << expression;
+                            temp_expression = expression;
                     }
                 }
         }
@@ -113,7 +91,7 @@ float calculator(string expression, int p1, int p2){
 
     }
 
-
+}
 
 
 int main()
