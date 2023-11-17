@@ -4,7 +4,7 @@
 using namespace std;
 
 string expression;
-string numbers("0123456789"); //набор цифр для проверки
+string numbers("0123456789,"); //набор цифр для проверки
 string ops("^*/+-");
 string d;
 //float a, b, c; // переменные для записи членов арифмитических выражений и их результатов
@@ -44,7 +44,6 @@ void calculator(string expression){
                 while (temp_expression.find(ops[f]) != temp_expression.npos){ // здесь ищем числа, окружающие нужный нам оператор
                                     flag = 0;
                                     int a = 0, b = 0;
-                                    float c = 0;
                                     string n("");
                                     string m(""); //строки для записи членов
                                     cout << "длина: " << temp_expression.length() << endl;
@@ -97,23 +96,28 @@ void calculator(string expression){
                                             }
                 cout << "a = " << a << endl;
                 cout << "b = " << b << endl;
-                switch(ops[f]){
-                case '^':{
+                float c = 0;
+                if (ops[f] == '^'){
+                cout << "выполняется возведение в степень" << endl;
                 c = pow(a, b);
                 }
-                case '*':{
+                if (ops[f] == '*'){
+                cout << "выполняется умножение" << endl;
                 c = a * b;
                 }
-                case '/':{
+                if (ops[f] == '/'){
+                cout << "выполняется деление" << endl;
                 c = a / b;
                 }
-                case '+':{
+                if (ops[f] == '+'){
+                cout << "выполняется сложение" << endl;
                 c = a + b;
                 }
-                case '-':{
+                if (ops[f] == '-'){
+                cout << "выполняется вычитание" << endl;
                 c = a - b;
                 }
-                }
+
                 cout << "c = " << c << endl;
                 string d = to_string(c);
                 a = 0;
@@ -122,7 +126,7 @@ void calculator(string expression){
                 expression.replace(0, g2+1, d);
                 cout << "выражение после замены: " << expression << endl;
                 temp_expression = expression;
-
+                }
 
                     }
             }
@@ -131,7 +135,7 @@ void calculator(string expression){
         }
         cout << expression << endl;
 }
-}
+
 
 
 
