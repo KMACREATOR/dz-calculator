@@ -2,6 +2,7 @@
 #include <string>
 #include <cmath>
 using namespace std;
+//нужно ввести переменную, которая указывает, принято ли было выражение со скобками или без, чтобы правильно его заменить
 
 string expression;
 string numbers("0123456789,"); //набор цифр для проверки
@@ -13,6 +14,7 @@ void calculator(string expression){
     while(((expression.find("^") != expression.npos) || (expression.find("*") != expression.npos) || (expression.find("/") != expression.npos) || (expression.find("+") != expression.npos) || (expression.find("-") != expression.npos)) && (expression.rfind("-") != 0)){
         int k1 = 0, k2 = 0; //счетчики для открытых и закрытых скобок
         if (temp_expression.find("(") != expression.npos){ //в этом куске проверяем выражение на скобки
+
             for (int i = 0; i < temp_expression.length(); ++i){
                 if (temp_expression[i] == '('){
                     k1 = k1 + 1;
@@ -61,8 +63,8 @@ void calculator(string expression){
                                                     flag = 1;
                                                     a = stof(n);
                                                     g2 = i;
-                                                    cout << "сохраненный n: " << n << endl;
-                                                    cout << "индекс начала n:" << e1 << endl;
+//                                                    cout << "сохраненный n: " << n << endl;
+//                                                    cout << "индекс начала n:" << e1 << endl;
                                                     }
                                             }
                                             if ((flag == 1) && (i != g2)){
